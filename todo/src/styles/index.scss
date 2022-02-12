@@ -1,0 +1,53 @@
+body
+{
+    background-color: rgb(243, 243, 243);
+    font-family: sans-serif;
+}
+
+.main-title
+{
+    font-size: 3em;
+    font-weight: 700;
+    color: rgb(68, 68, 68);
+    padding-left: 39%;
+    padding-bottom: 2%;
+}
+
+.center
+{
+    padding-top: 1%;
+}
+
+.container
+{
+    padding: 1%;
+    margin-top: 1%;
+    width: 50%;
+    height: 100%;
+    margin-left: 25%;
+    @extend .glass-effect;
+}
+
+.container-task{
+    @extend .container;
+    @extend .task-text;
+    background: rgba(233, 207, 56, 0.712) !important;
+}
+.task-text
+{
+    text-align: center;
+    font-size: 1.2em;
+}
+.task-text:hover
+{
+    text-decoration: line-through;
+}
+.glass-effect
+{
+    background: rgba(122, 2, 61, 0.22);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(8.5px);
+    -webkit-backdrop-filter: blur(8.5px);
+    border: 1px solid rgba(122, 2, 61, 0.04);
+}

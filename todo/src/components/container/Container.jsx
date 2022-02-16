@@ -11,6 +11,7 @@ function Container() {
 		var newTask = { id: ID, task: task };
 		setData((prevData) => [newTask, ...prevData]);
 		setID(ID + 1);
+		setTask('');
 	}
 	function removeTask(id) {
 		setData(data.filter((task) => task.id !== id));
@@ -22,10 +23,16 @@ function Container() {
 				<div className="input-group input-group-lg">
 					<input
 						type="text"
+						value={task}
 						className="form-control"
 						placeholder="type your task here"
 						aria-label="Task"
 						aria-describedby="button-addon2"
+						onKeyPress={(e) => {
+							if (e.key === 'Enter') {
+								if (!/^\s*$/.test(task)) addTask();
+							}
+						}}
 						onChange={(e) => {
 							setTask(e.target.value);
 						}}></input>

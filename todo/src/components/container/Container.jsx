@@ -1,11 +1,21 @@
 import 'bootstrap/dist/css/bootstrap.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Title from '../title/Title';
+import dataTasks from '../../data/tasks.json';
 
 function Container() {
 	const [data, setData] = useState([]);
 	const [task, setTask] = useState('');
 	const [ID, setID] = useState(0);
+
+	useEffect(() => {
+		const tasks = JSON.parse(localStorage.getItem('tasks'));
+		if (tasks) setData(tasks);
+	}, []);
+
+	useEffect(() => {
+		localStorage.setItem('tasks', JSON.stringify(data));
+	}, [data]);
 
 	function addTask() {
 		var newTask = { id: ID, task: task };
@@ -36,7 +46,13 @@ function Container() {
 						onChange={(e) => {
 							setTask(e.target.value);
 						}}></input>
-					<button onClick={() => addTask()} className="btn btn-outline-secondary" type="button" id="button-addon2">
+					<button
+						onClick={() => {
+							if (!/^\s*$/.test(task)) addTask();
+						}}
+						className="btn btn-secondary"
+						type="button"
+						id="button-addon2">
 						Add
 					</button>
 				</div>

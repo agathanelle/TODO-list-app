@@ -1,7 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import { useEffect, useState } from 'react';
 import Title from '../title/Title';
-import Task from '../task/Task';
 import dataTasks from '../../data/tasks.json';
 
 function Container() {
@@ -10,9 +9,16 @@ function Container() {
 	const [ID, setID] = useState(0);
 
 	useEffect(() => {
-		setData(dataTasks);
-		//const tasks = JSON.parse(localStorage.getItem('tasks'));
-		//if (tasks) setData(tasks);
+		const tasks = JSON.parse(localStorage.getItem('tasks'));
+		if (tasks.length < 0) {
+			setData(tasks);
+		} else setData(dataTasks);
+		if (tasks.length > 0) {
+			var maxId = tasks.reduce(function (max, obj) {
+				return obj.id > max.id ? obj : max;
+			});
+			setID(maxId.id + 1);
+		}
 	}, []);
 
 	useEffect(() => {
@@ -20,7 +26,7 @@ function Container() {
 	}, [data]);
 
 	function addTask() {
-		var newTask = { id: ID, task: task };
+		var newTask = { id: ID, task: task, status: 'notstarted' };
 		setData((prevData) => [newTask, ...prevData]);
 		setID(ID + 1);
 		setTask('');
@@ -28,6 +34,11 @@ function Container() {
 	function removeTask(id) {
 		setData(data.filter((task) => task.id !== id));
 	}
+
+	function updateTask(id, status) {
+		setData(data.map((task) => (task.id === id ? { ...task, status: status } : task)));
+	}
+
 	return (
 		<div className="center">
 			<div className="container">
@@ -59,7 +70,29 @@ function Container() {
 					</button>
 				</div>
 			</div>
-			<div>{data === null ? null : data.map((tasks) => <Task id={tasks.id} task={tasks.task} status={tasks.status}></Task>)}</div>
+			<div>
+				{data === null
+					? null
+					: data.map((tasks) => (
+							<div key={tasks.id} className={`container-task ` + tasks.status}>
+								<div>{tasks.task}</div>
+								<div className="button-aligment">
+									<button className="btn btn-light" onClick={() => updateTask(tasks.id, 'notstarted')}>
+										Not started
+									</button>
+									<button className="btn btn-light" onClick={() => updateTask(tasks.id, 'inprogress')}>
+										In progress
+									</button>
+									<button className="btn btn-light" onClick={() => updateTask(tasks.id, 'done')}>
+										Done
+									</button>
+									<button className="btn btn-dark" onClick={() => removeTask(tasks.id)}>
+										Remove
+									</button>
+								</div>
+							</div>
+					  ))}
+			</div>
 		</div>
 	);
 }

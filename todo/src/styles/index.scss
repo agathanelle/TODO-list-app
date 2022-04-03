@@ -29,9 +29,21 @@ body
 }
 
 .container-task{
+    &.done 
+    {
+        background: rgba(106, 213, 102, 0.856) !important;
+    }
+    &.inprogress
+    {
+        background: rgba(254, 228, 111, 0.932) !important;
+    }
+    &.notstarted
+    {
+        background: rgba(142, 174, 231, 0.932) !important;
+    }
+    //background: rgba(239, 100, 172, 0.454) !important;
     @extend .container;
     @extend .task-text;
-    background: rgba(233, 207, 56, 0.712) !important;
 }
 .task-text
 {
@@ -39,10 +51,10 @@ body
     font-size: 1.2em;
     word-wrap: break-word;
 }
-.task-text:hover
+/*.task-text:hover
 {
     text-decoration: line-through;
-}
+}*/
 .glass-effect
 {
     background: rgba(122, 2, 61, 0.22);

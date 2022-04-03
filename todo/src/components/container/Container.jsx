@@ -1,6 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import { useEffect, useState } from 'react';
 import Title from '../title/Title';
+import Task from '../task/Task';
 import dataTasks from '../../data/tasks.json';
 
 function Container() {
@@ -9,8 +10,9 @@ function Container() {
 	const [ID, setID] = useState(0);
 
 	useEffect(() => {
-		const tasks = JSON.parse(localStorage.getItem('tasks'));
-		if (tasks) setData(tasks);
+		setData(dataTasks);
+		//const tasks = JSON.parse(localStorage.getItem('tasks'));
+		//if (tasks) setData(tasks);
 	}, []);
 
 	useEffect(() => {
@@ -57,15 +59,7 @@ function Container() {
 					</button>
 				</div>
 			</div>
-			<div>
-				{data === null
-					? null
-					: data.map((tasks) => (
-							<div key={tasks.id} className="container-task" onClick={() => removeTask(tasks.id)}>
-								{tasks.task}
-							</div>
-					  ))}
-			</div>
+			<div>{data === null ? null : data.map((tasks) => <Task id={tasks.id} task={tasks.task} status={tasks.status}></Task>)}</div>
 		</div>
 	);
 }

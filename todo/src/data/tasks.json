@@ -2,16 +2,16 @@
     {
         "id": 1,
         "task": "Clean room",
-        "status": false
+        "status": "notstarted"
     },
     {
         "id": 2,
         "task": "Read 10 pages",
-        "status": false
+        "status": "inprogress"
     },
     {
         "id": 3,
         "task": "Buy groceries",
-        "status":true
+        "status": "done"
     }
 ]

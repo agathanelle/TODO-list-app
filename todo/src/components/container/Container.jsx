@@ -10,7 +10,7 @@ function Container() {
 
 	useEffect(() => {
 		const tasks = JSON.parse(localStorage.getItem('tasks'));
-		if (tasks.length < 0) {
+		if (tasks.length > 0) {
 			setData(tasks);
 		} else setData(dataTasks);
 		if (tasks.length > 0) {

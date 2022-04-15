@@ -2,6 +2,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { useEffect, useState } from 'react';
 import Title from '../title/Title';
 import dataTasks from '../../data/tasks.json';
+import Button from '../Button';
 
 function Container() {
 	const [data, setData] = useState([]);
@@ -59,15 +60,13 @@ function Container() {
 						onChange={(e) => {
 							setTask(e.target.value);
 						}}></input>
-					<button
+					<Button
+						type="add"
 						onClick={() => {
 							if (!/^\s*$/.test(task)) addTask();
 						}}
-						className="btn btn-secondary"
-						type="button"
-						id="button-addon2">
-						Add
-					</button>
+						text="Add"
+					/>
 				</div>
 			</div>
 			<div>
@@ -75,20 +74,12 @@ function Container() {
 					? null
 					: data.map((tasks) => (
 							<div key={tasks.id} className={`container-task ` + tasks.status}>
+								<Button type="remove" onClick={() => removeTask(tasks.id)} text="x" />
 								<div>{tasks.task}</div>
 								<div className="button-aligment">
-									<button className="btn btn-light" onClick={() => updateTask(tasks.id, 'notstarted')}>
-										Not started
-									</button>
-									<button className="btn btn-light" onClick={() => updateTask(tasks.id, 'inprogress')}>
-										In progress
-									</button>
-									<button className="btn btn-light" onClick={() => updateTask(tasks.id, 'done')}>
-										Done
-									</button>
-									<button className="btn btn-dark" onClick={() => removeTask(tasks.id)}>
-										Remove
-									</button>
+									<Button onClick={() => updateTask(tasks.id, 'notstarted')} taskStatus={tasks.status} text="Not started" />
+									<Button onClick={() => updateTask(tasks.id, 'inprogress')} taskStatus={tasks.status} text="In progress" />
+									<Button onClick={() => updateTask(tasks.id, 'done')} taskStatus={tasks.status} text="Done" />
 								</div>
 							</div>
 					  ))}

@@ -25,6 +25,7 @@ body
     width: 50%;
     height: 100%;
     margin-left: 25%;
+    margin-bottom: 10px;
     @extend .glass-effect;
 }
 
@@ -49,6 +50,7 @@ body
 {
     text-align: center;
     font-size: 1.2em;
+    padding-top: 5px;
     word-wrap: break-word;
 }
 /*.task-text:hover
@@ -67,11 +69,19 @@ body
 
 .button-aligment
 {
-    padding-top: 5px;
-    padding-bottom: 2px;
+    padding-top: 12px;
+    padding-bottom: 5px;
 }
 
 .button-aligment button
 {
-    margin: 2px !important;
+    margin: 2px;
+}
+
+.remove-button
+{
+    background: none;
+    border: none;
+    padding-left: 90%;
+       
 }

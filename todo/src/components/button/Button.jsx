@@ -1,4 +1,4 @@
-import { ReactComponent as SVG } from '../components/assets/xButton.svg';
+import { ReactComponent as SVG } from '../assets/xButton.svg';
 
 const typeClassMap = {
 	default: 'btn btn-light',

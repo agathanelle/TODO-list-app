@@ -13,3 +13,7 @@ What is done:
 What could be done:
 - sort tasks by type
 - task search
+
+Installed libraries:
+- Bootstrap v.5.0
+- SASS

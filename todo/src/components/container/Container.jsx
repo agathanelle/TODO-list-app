@@ -2,7 +2,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { useEffect, useState } from 'react';
 import Title from '../title/Title';
 import dataTasks from '../../data/tasks.json';
-import Button from '../Button';
+import Button from '../button/Button';
 
 function Container() {
 	const [data, setData] = useState([]);

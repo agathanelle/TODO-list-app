@@ -10,7 +10,7 @@ function Container() {
 	const [ID, setID] = useState(0);
 
 	useEffect(() => {
-		const tasks = JSON.parse(localStorage.getItem('tasks'));
+		const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 		if (tasks.length > 0) {
 			setData(tasks);
 		} else setData(dataTasks);
